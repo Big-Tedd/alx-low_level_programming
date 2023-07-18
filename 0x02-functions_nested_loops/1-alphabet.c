@@ -3,13 +3,14 @@
 /**
  * print_alphabet - entry point
  *
- * Return: Always (0) zero
+ * Description: Prints the lowercase alphabet followed by a new line.
  */
 
 void print_alphabet(void)
 {
 	char c;
+
 	for (c = 'a'; c <= 'z'; c++)
-		_putchar(c);
-	_putchar('\n');
+		_putchar (c);
+	_putchar ('\n');
 }
