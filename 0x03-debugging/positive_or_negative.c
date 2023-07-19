@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * main - Checks if number is -ve, +ve or zero
+ * positive_or_negative - Checks if number is -ve, +ve or zero
  * @i: number to be checked
  * Return: Always (0) zero
  */
@@ -20,5 +20,4 @@ void positive_or_negative(int i)
 	{
 		printf("%d is %s\n", i, "zero");
 	}
-	return;
 }
