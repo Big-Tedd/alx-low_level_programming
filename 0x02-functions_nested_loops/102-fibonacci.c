@@ -11,12 +11,12 @@ int main(void)
 	long j = 1;
 	long k = 2;
 
-	while (i < 50)
+	while (i < 52)
 	{
 		if (i == 0)
 			printf("%ld", j);
 		else if (i == 1)
-			printf("%ld", k);
+			printf(", %ld", k);
 		else
 		{
 			k += j;
