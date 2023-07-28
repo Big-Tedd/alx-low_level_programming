@@ -2,67 +2,65 @@
 #include <stdio.h>
 
 /**
- * print_line - Prints s bytes of a buffer
+ * print_line_buffer - Prints 'size' bytes of a
+ * buffer 'buffer'starting from a given line 'line'
  * @buffer: Buffer to print
- * @bytes: Number of bytes to print
- * @line: Line number of buffer to print
+ * @size: Number of bytes from the buffer to print
+ * @line: Line of the buffer to print
  *
  * Return: void
  */
-void print_line(char *buffer, int bytes, int line)
+void print_line_buffer(char *buffer, int size, int line)
 {
-	int j, k;
+	int idx, k;
 
-	for (j = 0; j <= 9; j++)
+	for (idx = 0; idx <= 9; idx++)
 	{
-		if (j <= bytes)
-			printf("%02x", buffer[line * 10 + j]);
+		if (idx <= size)
+			printf("%02x", buffer[line * 10 + idx]);
 		else
 			printf("  ");
 
-		if (j % 2)
+		if (idx % 2)
 			putchar(' ');
 	}
 
-	for (k = 0; k <= bytes; k++)
+	for (k = 0; k <= size; k++)
 	{
 		if (buffer[line * 10 + k] > 31 && buffer[line * 10 + k] < 127)
 			putchar(buffer[line * 10 + k]);
 		else
 			putchar('.');
 	}
-
-	putchar('\n');
 }
 
 /**
- * print_buffer - Prints a buffer
- * @buffer: Buffer to print
- * @size: Size of buffer
+ * print_formatted_buffer - Prints a buffer in a formatted way
+ * @buf: Buffer to print
+ * @buf_size: Size of the buffer
  *
  * Return: void
  */
-void print_buffer(char *buffer, int size)
+void print_formatted_buffer(char *buf, int buf_size)
 {
 	int i;
 
-	for (i = 0; i <= (size - 1) / 10 && size; i++)
+	for (i = 0; i <= (buf_size - 1) / 10 && buf_size; i++)
 	{
 		printf("%08x: ", i * 10);
 
-		if (i < size / 10)
+		if (i < buf_size / 10)
 		{
-			print_line(buffer, 9, i);
+			print_line_buffer(buf, 9, i);
 		}
 		else
 		{
-			print_line(buffer, size % 10 - 1, i);
+			print_line_buffer(buf, buf_size % 10 - 1, i);
 		}
 
 		putchar('\n');
 	}
 
-	if (size == 0)
+	if (buf_size == 0)
 		putchar('\n');
 }
-
