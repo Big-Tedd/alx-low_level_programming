@@ -1,66 +1,63 @@
-#include "main.h"
 #include <stdio.h>
+#include "main.h"
 
 /**
- * print_line_buffer - Prints 'size' bytes of a
- * buffer 'buffer'starting from a given line 'line'
- * @buffer: Buffer to print
- * @size: Number of bytes from the buffer to print
- * @line: Line of the buffer to print
+ * print_buffer - Prints the content of a buffer
+ * @b: Pointer to the buffer
+ * @size: Number of bytes to print from the buffer
  *
- * Return: void
+ * This function prints the content of 'size' bytes
+ * of the buffer pointed by 'b'.
+ * The output format displays 10 bytes per line,
+ * in hexadecimal and character format.
+ * Each line starts with the position of the
+ * first byte of the line in hexadecimal (8 chars),
+ * Each line shows the hexadecimal content (2 chars)
+ * of the buffer, 2 bytes at a time, separated by a space.
+ * Each line shows the content of the buffer.
+ * If the byte is a printable character, print the letter, if not, print '.'.
+ * Each line ends with a new line '\n'.
+ * If size is 0 or less, the output should be a new line only '\n'.
  */
-void print_line_buffer(char *buffer, int size, int line)
+
+void print_buffer(char *b, int size)
 {
-	int idx, k;
+	int i, j;
 
-	for (idx = 0; idx <= 9; idx++)
+	if (size <= 0)
 	{
-		if (idx <= size)
-			printf("%02x", buffer[line * 10 + idx]);
-		else
-			printf("  ");
-
-		if (idx % 2)
-			putchar(' ');
+	printf("\n");
+	return;
 	}
 
-	for (k = 0; k <= size; k++)
+	for (i = 0; i < size; i += 10)
 	{
-		if (buffer[line * 10 + k] > 31 && buffer[line * 10 + k] < 127)
-			putchar(buffer[line * 10 + k]);
-		else
-			putchar('.');
-	}
-}
+	printf("%08x: ", i);
 
-/**
- * print_formatted_buffer - Prints a buffer in a formatted way
- * @buf: Buffer to print
- * @buf_size: Size of the buffer
- *
- * Return: void
- */
-void print_formatted_buffer(char *buf, int buf_size)
-{
-	int i;
-
-	for (i = 0; i <= (buf_size - 1) / 10 && buf_size; i++)
+	for (j = i; j < i + 10; j++)
 	{
-		printf("%08x: ", i * 10);
-
-		if (i < buf_size / 10)
-		{
-			print_line_buffer(buf, 9, i);
-		}
-		else
-		{
-			print_line_buffer(buf, buf_size % 10 - 1, i);
-		}
-
-		putchar('\n');
+	if (j < size)
+	printf("%02x ", (unsigned char)b[j]);
+	else
+	printf("   ");
 	}
 
-	if (buf_size == 0)
-		putchar('\n');
+	printf(" ");
+
+	for (j = i; j < i + 10; j++)
+	{
+	if (j < size)
+	{
+	char ch = b[j];
+
+	printf("%c", (isprint(ch) ? ch : '.'));
+	}
+	else
+	{
+	printf(" ");
+	}
+	}
+
+	printf("\n");
+	}
 }
