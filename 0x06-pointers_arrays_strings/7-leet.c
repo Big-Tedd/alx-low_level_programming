@@ -1,32 +1,37 @@
-#include "holberton.h"
-/**
- *leet - a function that encodes a string into 1337.
- *@s: string to be crypted .
- *Return: pointer to s .
- *Update V 1.0 : In this new code , i changed 2 arrays with 2 pointers, that
- *are pointed to the BASS adresses of the 2 arrays.
- *in addition to that , i assigned a pointer p to s.
- */
+#include "main.h"
 
+/**
+ * leet - Encodes a string into 1337.
+ * Letters 'a' and 'A' are replaced by '4'.
+ * Letters 'e' and 'E' are replaced by '3'.
+ * Letters 'o' and 'O' are replaced by '0'.
+ * Letters 't' and 'T' are replaced by '7'.
+ * Letters 'l' and 'L' are replaced by '1'.
+ * @s: Pointer to the string.
+ *
+ * Return: Pointer to the modified string.
+ */
 char *leet(char *s)
 {
-	char *m = "aeotl";
-	char *M = "AEOTL";
-	int x[] = {'4', '3', '0', '7', '1'};
-	int i;
-	char *p = s;
+	int stringCount, leetCount;
+	char leetLetters[] = "aAeEoOtTlL";
+	char leetNums[] = "4433007711";
 
-	while (*s != '\0')
+	/* Scan through the string */
+	stringCount = 0;
+	while (s[stringCount] != '\0')
 	{
-
-		for (i = 0; i < 5; i++)
+		leetCount = 0;
+		while (leetCount < 10)
 		{
-			if (*s == *(m + i) || *s == *(M + i))
-
-				*s = x[i];
+			if (leetLetters[leetCount] == s[stringCount])
+			{
+				s[stringCount] = leetNums[leetCount];
+				break;
+			}
+			leetCount++;
 		}
-		s++;
-
+		stringCount++;
 	}
-	return (p);
+	return (s);
 }
