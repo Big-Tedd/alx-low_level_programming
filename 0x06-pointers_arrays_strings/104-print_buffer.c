@@ -3,40 +3,40 @@
 
 /**
  * print_buffer - prints a buffer
- * @buf: buffer.
+ * @b: buffer.
  * @size: size of buffer.
  * Return: no return.
  */
 
 void print_buffer(char *b, int size)
 {
-	int a, b, c;
+	int i, j, k;
 
 	if (size <= 0)
 		printf("\n");
 	else
 	{
-		for (a = 0; a < size; a += 10)
+		for (i = 0; i < size; i += 10)
 		{
 			printf("%.8x:", a);
-			for (b = a; b < a + 10; b++)
+			for (j = i; j < i + 10; j++)
 			{
-				if (b % 2 == 0)
+				if (j % 2 == 0)
 					printf(" ");
-				if (b < size)
-					printf("%.2x", *(buf + b));
+				if (j < size)
+					printf("%.2x", *(b + j));
 				else
 					printf("  ");
 			}
 			printf(" ");
-			for (c = a; c < a + 10; c++)
+			for (k = i; k < i + 10; k++)
 			{
-				if (c >= size)
+				if (k >= size)
 					break;
-				if (*(buf + l) < 32 || *(buf + l) > 126)
+				if (*(b + l) < 32 || *(b + k) > 126)
 					printf("%c", '.');
 				else
-					printf("%c", *(buf + l));
+					printf("%c", *(b + k));
 			}
 			printf("\n");
 		}
