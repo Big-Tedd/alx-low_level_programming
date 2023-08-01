@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * print_diagsums - prints the sum of the two diagonals
@@ -7,20 +6,24 @@
  * @a: square matrix of which we print the symof diagonals
  * @size: size of the matrix
  */
+
 void print_diagsums(int *a, int size)
 {
-	int x;
+	int index, sum1 = 0, sum2 = 0;
 
-	unsigned int s1, s2;
-
-	 s1 = 0;
-	 s2 = 0;
-
-	for (i = 0; i < size; i++)
+	for (index = 0; index < size; index++)
 	{
-		s1 += a[(size * i) + i];
-		s2 += a[(size * (i + 1)) - (i + 1)];
+		sum1 += a[index];
+		a += size;
 	}
 
-	printf("%d, %d\n", s1, s2);
+	a -= size;
+
+	for (index = 0; index < size; index++)
+	{
+		sum2 += a[index];
+		a -= size;
+	}
+
+	printf("%d, %d\n", sum1, sum2);
 }
