@@ -8,16 +8,16 @@
 
 void print_chessboard(char (*a)[8])
 {
-	unsigned int q, k = 0;
+	unsigned int i, m = 0;
 
-	for (q = 0; q < 64; q++)
+	for (i = 0; i < 64; i++)
 	{
-		if (q % 8 == 0 && q != 0)
+		if (i % 8 == 0 && i != 0)
 		{
-			k = q;
+			m = i;
 			_putchar('\n');
 		}
-		_putchar(a[q / 8][q - k]);
+		_putchar(a[i / 8][i - m]);
 	}
 	_putchar('\n');
 }
