@@ -10,14 +10,26 @@
 
 void print_diagsums(int *a, int size)
 {
-	int i, s1 = 0, s2 = 0;
+	int i, sum, sizer;
 
-	for (i = 0; i < (size * size); i++)
+	i = 0;
+	sum = 0;
+	sizer = size * size;
+	while (i < sizer)
 	{
 		if (i % (size + 1) == 0)
-			s1 += *(a + i);
-		if (i % (size - 1) == 0 && i != 0 && i < size * size - 1)
-			s2 += *(a + i);
+			sum += a[i];
+		i++;
 	}
-	printf("%d, %d\n", s1, s2);
+	printf("%d, ", sum);
+
+	sum = 0;
+	i = 0;
+	while (i < sizer)
+	{
+		if (i % (size - 1) == 0 && i != (sizer - 1) && i != 0)
+			sum += a[i];
+		i++;
+	}
+	printf("%d\n", sum);
 }
